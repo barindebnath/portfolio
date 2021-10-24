@@ -38,7 +38,7 @@ const Navigation = ({ isDark, handleSwitch }: Props) => {
           <MenuToggle onClick={() => setMenuToggle(!menuToggle)}>☰</MenuToggle>
           <ButtonGroup menuToggle={menuToggle}>
             <NavButtons
-              active={pathname === "/portfolio" || pathname === "/portfolio/projects"}
+              active={pathname === "/portfolio/" || pathname === "/portfolio/projects"}
               onClick={() => handleClick("/portfolio/projects")}
             >
               Projects
