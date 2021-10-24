@@ -37,19 +37,28 @@ const Navigation = ({ isDark, handleSwitch }: Props) => {
           <Toggle isDark={isDark} onClick={handleSwitch} desktop={false} />
           <MenuToggle onClick={() => setMenuToggle(!menuToggle)}>☰</MenuToggle>
           <ButtonGroup menuToggle={menuToggle}>
-            <NavButtons active={pathname === "/" || pathname === "/projects"} onClick={() => handleClick("/projects")}>
+            <NavButtons
+              active={pathname === "/portfolio" || pathname === "/portfolio/projects"}
+              onClick={() => handleClick("/portfolio/projects")}
+            >
               Projects
             </NavButtons>
-            <NavButtons active={pathname === "/experience"} onClick={() => handleClick("/experience")}>
+            <NavButtons
+              active={pathname === "/portfolio/experience"}
+              onClick={() => handleClick("/portfolio/experience")}
+            >
               Experience
             </NavButtons>
-            <NavButtons active={pathname === "/skills"} onClick={() => handleClick("/skills")}>
+            <NavButtons active={pathname === "/portfolio/skills"} onClick={() => handleClick("/portfolio/skills")}>
               Skills
             </NavButtons>
-            <NavButtons active={pathname === "/education"} onClick={() => handleClick("/education")}>
+            <NavButtons
+              active={pathname === "/portfolio/education"}
+              onClick={() => handleClick("/portfolio/education")}
+            >
               Education
             </NavButtons>
-            <NavButtons active={pathname === "/about"} onClick={() => handleClick("/about")}>
+            <NavButtons active={pathname === "/portfolio/about"} onClick={() => handleClick("/portfolio/about")}>
               About
             </NavButtons>
             <Toggle isDark={isDark} onClick={handleSwitch} desktop={true} />
@@ -58,19 +67,19 @@ const Navigation = ({ isDark, handleSwitch }: Props) => {
       </Fixed>
 
       <Switch>
-        <Route path='/projects' exact>
+        <Route path='/portfolio/projects' exact>
           <Projects />
         </Route>
-        <Route path='/education'>
+        <Route path='/portfolio/education'>
           <Education />
         </Route>
-        <Route path='/experience'>
+        <Route path='/portfolio/experience'>
           <Experience />
         </Route>
-        <Route path='/skills'>
+        <Route path='/portfolio/skills'>
           <Skills />
         </Route>
-        <Route path='/about'>
+        <Route path='/portfolio/about'>
           <About />
         </Route>
         {/* change default Route */}
