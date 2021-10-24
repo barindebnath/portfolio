@@ -1,13 +1,55 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html {
+  font-size: 16px;
+}
+@media (max-width: 900px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media (max-width: 200px) {
+  html {
+    font-size: 12px;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/*  font faces */
+@font-face {
+  font-family: "SourceSansPro-Regular";
+  src: local("SourceSansPro-Regular"), url(./Assets/Fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "SourceSansPro-Light";
+  src: local("SourceSansPro-Light"), url(./Assets/Fonts/Source_Sans_Pro/SourceSansPro-Light.ttf) format("truetype");
+}
+@font-face {
+  font-family: "SourceSansPro-Bold";
+  src: local("SourceSansPro-Bold"), url(./Assets/Fonts/Source_Sans_Pro/SourceSansPro-Bold.ttf) format("truetype");
+}
+@font-face {
+  font-family: "SourceSansPro-SemiBold";
+  src: local("SourceSansPro-SemiBold"),
+    url(./Assets/Fonts/Source_Sans_Pro/SourceSansPro-SemiBold.ttf) format("truetype");
+}
+
+* {
+  box-sizing: border-box;
+  /* transition: all 0.5s; */
+}
+body {
+  font-family: SourceSansPro-Regular;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 1rem;
+  text-rendering: optimizeLegibility;
+  background-color: hsl(200, 10%, 85%);
+}
+body,
+ul,
+ol,
+dl {
+  margin: 0;
+}
+
+.vertical-timeline-element-content .vertical-timeline-element-date {
+  padding: 0 !important;
 }
