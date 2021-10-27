@@ -73,7 +73,7 @@ const Education = () => {
 
   return (
     <Container>
-      <Title>EXPERIENCE</Title>
+      <Title>EDUCATION</Title>
 
       <VerticalTimeline layout='1-column'>
         {educationList.length
