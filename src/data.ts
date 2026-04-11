@@ -62,6 +62,23 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "SaaS Foundation",
+    description:
+      "Production-grade multi-tenant SaaS starter built on a Turborepo monorepo. Implements logical data isolation via organization_id scoping, webhook-synced RBAC (owner/admin/member), and per-org Stripe billing. Stack: Next.js 15, Drizzle ORM, Neon serverless Postgres, Clerk, Stripe. Deployed to Vercel.",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Turborepo",
+      "Drizzle ORM",
+      "PostgreSQL",
+      "Clerk",
+      "Stripe",
+      "Tailwind",
+    ],
+    live: "https://saas-foundation-web-liard.vercel.app",
+    github: "https://github.com/barindebnath/saas_foundation",
+  },
+  {
     title: "Portfolio",
     description:
       "Personal portfolio site built with React, TypeScript, Vite, Tailwind CSS, and Framer Motion. Deployed to GitHub Pages.",
