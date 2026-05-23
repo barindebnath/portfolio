@@ -54,6 +54,8 @@ Deployments are automated with GitHub Actions via `.github/workflows/deploy-page
 - Or run it manually from **Actions → Deploy to GitHub Pages → Run workflow**.
 
 > **First-time setup:** In your GitHub repo → Settings → Pages → set **Source** to **GitHub Actions**.
+>
+> If deploy is blocked with `Branch "main" is not allowed to deploy to github-pages`, go to **Settings → Environments → github-pages** and allow deployments from `main` (or remove restrictive branch rules).
 
 ### Optional manual deploy
 
