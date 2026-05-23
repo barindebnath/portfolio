@@ -62,6 +62,29 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "NorthGrid",
+    description:
+      "Scandinavian sustainability intelligence platform combining real-time Danish energy data, carbon-aware commute tracking, ESG reporting, and smart energy optimization for enterprise-grade performance and UX.",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL",
+      "Playwright",
+      "SaaS",
+      "ESG",
+    ],
+    live: "https://north-grid-nine.vercel.app",
+    github: "https://github.com/barindebnath/NorthGrid",
+  },
+  {
+    title: "NordicFlow",
+    description:
+      "Engineering intelligence platform for modern frontend teams with PR analytics, deployment insights, DX metrics, and repository health dashboards.",
+    tags: ["Next.js", "React", "TypeScript", "PostgreSQL", "Analytics"],
+    live: "https://nordicflow.vercel.app/dashboard",
+    github: "https://github.com/barindebnath/nordicflow",
+  },
+  {
     title: "SaaS Foundation",
     description:
       "Production-grade multi-tenant SaaS starter built on a Turborepo monorepo. Implements logical data isolation via organization_id scoping, webhook-synced RBAC (owner/admin/member), and per-org Stripe billing. Stack: Next.js 15, Drizzle ORM, Neon serverless Postgres, Clerk, Stripe. Deployed to Vercel.",
