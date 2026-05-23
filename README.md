@@ -48,13 +48,22 @@ All site content lives in `src/data.ts` — edit `siteConfig`, `skillGroups`, `p
 
 ## Deploy to GitHub Pages
 
+Deployments are automated with GitHub Actions via `.github/workflows/deploy-pages.yml`.
+
+- Push to `main` to trigger a deploy automatically.
+- Or run it manually from **Actions → Deploy to GitHub Pages → Run workflow**.
+
+> **First-time setup:** In your GitHub repo → Settings → Pages → set **Source** to **GitHub Actions**.
+>
+> If deploy is blocked with `Branch "main" is not allowed to deploy to github-pages`, go to **Settings → Environments → github-pages** and allow deployments from `main` (or remove restrictive branch rules).
+
+### Optional manual deploy
+
 ```bash
 npm run deploy
 ```
 
-This runs `npm run build` then pushes the `dist/` folder to the `gh-pages` branch via [gh-pages](https://github.com/tschaub/gh-pages).
-
-> **First-time setup:** In your GitHub repo → Settings → Pages → set source to `gh-pages` branch, `/ (root)`.
+This fallback command builds the project and publishes `dist/` to the `gh-pages` branch using the `gh-pages` package.
 
 ## License
 
