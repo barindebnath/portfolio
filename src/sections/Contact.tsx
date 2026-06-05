@@ -1,105 +1,115 @@
-import { motion } from "framer-motion";
-import { useRef } from "react";
-import { useInView } from "framer-motion";
-import { Mail } from "lucide-react";
-import {
-  GithubIcon,
-  LinkedinIcon,
-  InstagramIcon,
-} from "../components/BrandIcons";
-import { siteConfig } from "../data";
+// Contact 3D scene — "Let's build something." headline that follows the
+// pointer with a magnetic lean. Scattered accent particles drift through
+// the surrounding space; no solid background shape (it competed with the
+// contact info overlay and read as a UFO under the bloom pass).
+//
+// World position: (0, -40, 0) — matches the "contact" camera waypoint.
 
-const sectionVariants = {
-  hidden: { opacity: 0, y: 32 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" as const },
-  },
-};
+import { useFrame, useThree } from "@react-three/fiber";
+import { Text } from "@react-three/drei";
+import { useMemo, useRef } from "react";
+import * as THREE from "three";
+import { getPalette } from "../scene/constants";
+import { useTheme } from "../theme";
+import { FONT_URLS } from "../scene/fonts";
 
-const socialLinks = [
-  {
-    label: "GitHub",
-    href: siteConfig.social.github,
-    icon: GithubIcon,
-  },
-  {
-    label: "LinkedIn",
-    href: siteConfig.social.linkedin,
-    icon: LinkedinIcon,
-  },
-  {
-    label: "Instagram",
-    href: siteConfig.social.instagram,
-    icon: InstagramIcon,
-  },
-];
+const HEADLINE_BASE_Y = 0.8;
+const MAGNET_STRENGTH = 0.3;
+const MAGNET_ROT = 0.12;
+const PARTICLE_COUNT = 50;
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
+function MagneticHeadline() {
+  const group = useRef<THREE.Group>(null);
+  const { mouse } = useThree();
+  const theme = useTheme();
+  const pal = getPalette(theme);
+
+  useFrame((state, delta) => {
+    if (!group.current) return;
+    const t = state.clock.elapsedTime;
+    const targetX = mouse.x * MAGNET_STRENGTH;
+    const targetY = HEADLINE_BASE_Y + mouse.y * MAGNET_STRENGTH * 0.6;
+    const targetRotY = mouse.x * MAGNET_ROT;
+    const targetRotX = -mouse.y * MAGNET_ROT * 0.5;
+
+    const k = 1 - Math.exp(-delta * 6);
+    group.current.position.x += (targetX - group.current.position.x) * k;
+    group.current.position.y += (targetY - group.current.position.y) * k;
+    group.current.rotation.y += (targetRotY - group.current.rotation.y) * k;
+    group.current.rotation.x += (targetRotX - group.current.rotation.x) * k;
+
+    group.current.position.y += Math.sin(t * 0.6) * 0.0015;
+  });
+
+  // Camera at z=6 with 50° FOV → visible width ≈ 5.6 world units at z=0.
+  // fontSize 0.38 keeps "Let's build something." on one line within that.
   return (
-    <div className="flex items-center gap-3 mb-2">
-      <span className="w-6 h-px bg-[#e8ff47]" />
-      <span className="text-xs font-display font-semibold uppercase tracking-widest text-[#e8ff47]">
-        {children}
-      </span>
-    </div>
+    <group ref={group} position={[0, HEADLINE_BASE_Y, 0]}>
+      <Text
+        font={FONT_URLS.syneBold}
+        fontSize={0.38}
+        letterSpacing={-0.025}
+        maxWidth={6}
+        textAlign="center"
+        anchorX="center"
+        anchorY="middle"
+        color={pal.text}
+        outlineWidth={0.002}
+        outlineColor={pal.bg}
+      >
+        Let&apos;s build something.
+      </Text>
+    </group>
+  );
+}
+
+function DriftingParticles() {
+  const ref = useRef<THREE.Points>(null);
+  const theme = useTheme();
+  const pal = getPalette(theme);
+
+  const positions = useMemo(() => {
+    const arr = new Float32Array(PARTICLE_COUNT * 3);
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      // Even scatter across the full visible viewport. Camera at z=6 /
+      // 50° FOV sees ~5.6 wide × ~4.7 tall at z=0; widening X to 14 and
+      // Y to 8 covers the full section incl. parallax depths.
+      arr[i * 3] = (Math.random() - 0.5) * 14;
+      arr[i * 3 + 1] = (Math.random() - 0.5) * 8;
+      arr[i * 3 + 2] = -Math.random() * 4 - 0.2;
+    }
+    return arr;
+  }, []);
+
+  useFrame((state) => {
+    if (!ref.current) return;
+    const t = state.clock.elapsedTime;
+    ref.current.rotation.y = t * 0.05;
+  });
+
+  return (
+    <points ref={ref}>
+      <bufferGeometry>
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+      </bufferGeometry>
+      <pointsMaterial
+        color={pal.accent}
+        size={0.04}
+        sizeAttenuation
+        transparent
+        opacity={0.55}
+        depthWrite={false}
+        toneMapped={false}
+      />
+    </points>
   );
 }
 
 export default function Contact() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" as never });
-
   return (
-    <section id="contact" ref={ref} className="py-28 px-6 bg-[#080808]">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          variants={sectionVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          <SectionLabel>Contact</SectionLabel>
-
-          <div className="mt-6 max-w-lg">
-            <h2 className="font-display font-bold text-[clamp(2rem,4vw,3rem)] leading-tight text-[#f0f0f0] mb-4">
-              Let's build something.
-            </h2>
-            <p className="text-[#666] text-base leading-relaxed mb-10">
-              I'm selectively open to new roles and interesting projects. Drop a
-              line if you'd like to work together or just say hi.
-            </p>
-
-            {/* Email CTA */}
-            <a
-              href={`mailto:${siteConfig.email}`}
-              className="group inline-flex items-center gap-3 px-7 py-3.5 rounded-lg border border-[#2a2a2a] text-[#aaa] font-display font-semibold text-sm hover:border-[#e8ff47]/50 hover:text-[#e8ff47] transition-all duration-200 mb-12"
-            >
-              <Mail
-                size={15}
-                className="group-hover:scale-110 transition-transform duration-200"
-              />
-              {siteConfig.email}
-            </a>
-
-            {/* Social links */}
-            <div className="flex items-center gap-4">
-              {socialLinks.map(({ label, href, icon: Icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="flex items-center justify-center w-10 h-10 rounded-lg border border-[#222] text-[#555] hover:border-[#e8ff47]/40 hover:text-[#e8ff47] transition-all duration-200"
-                >
-                  <Icon size={16} />
-                </a>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+    <group position={[0, -40, 0]}>
+      <DriftingParticles />
+      <MagneticHeadline />
+    </group>
   );
 }

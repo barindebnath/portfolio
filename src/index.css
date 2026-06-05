@@ -1,20 +1,120 @@
 @import "tailwindcss";
 
+/* Self-hosted fonts (no external CDN).
+   Files live in public/fonts/ so the same URL works for both the CSS
+   @font-face and the Drei <Text> font prop (troika-three-text fetches
+   the woff2 at runtime — it cannot resolve a bundler-rewritten path
+   from inside a worker). */
+@font-face {
+  font-family: "Syne";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 800;
+  src: url("/portfolio/fonts/syne-latin-wght-normal.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Syne";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 800;
+  src: url("/portfolio/fonts/syne-latin-ext-wght-normal.woff2") format("woff2");
+  unicode-range:
+    U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 1000;
+  src: url("/portfolio/fonts/dm-sans-latin-wght-normal.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 1000;
+  src: url("/portfolio/fonts/dm-sans-latin-ext-wght-normal.woff2")
+    format("woff2");
+  unicode-range:
+    U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "DM Sans";
+  font-style: italic;
+  font-display: swap;
+  font-weight: 100 1000;
+  src: url("/portfolio/fonts/dm-sans-latin-wght-italic.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --bg-color: #0a0a0a;
+  --surface-color: #111111;
+  --surface-2-color: #1a1a1a;
+  --accent-color: #e8ff47;
+  --accent-hover-color: #f0ff6a;
+  --accent-dim-color: rgba(232, 255, 71, 0.12);
+  --text-color: #f0f0f0;
+  --text-on-accent: #0a0a0a;
+  --muted-color: #888888;
+  --border-color: #222222;
+  --selection-bg: rgba(232, 255, 71, 0.25);
+  --selection-text: #e8ff47;
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg-color: #faf9f6;
+  --surface-color: #ffffff;
+  --surface-2-color: #f2f0e9;
+
+  --accent-color: #719400;
+  --accent-hover-color: #a8d604;
+  --accent-dim-color: rgba(190, 243, 5, 0.12);
+
+  --text-color: #121211;
+  --text-on-accent: #ffffff;
+  --muted-color: #6b6b63;
+
+  --border-color: #e5e2da;
+  --selection-bg: rgba(190, 243, 5, 0.3);
+  --selection-text: #121211;
+
+  color-scheme: light;
+}
+
 @theme {
-  --color-bg: #0a0a0a;
-  --color-surface: #111111;
-  --color-surface-2: #1a1a1a;
-  --color-accent: #e8ff47;
-  --color-accent-dim: rgba(232, 255, 71, 0.12);
-  --color-text: #f0f0f0;
-  --color-muted: #888888;
-  --color-border: #222222;
-  --font-display: 'Syne', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
+  --color-bg: var(--bg-color);
+  --color-surface: var(--surface-color);
+  --color-surface-2: var(--surface-2-color);
+  --color-accent: var(--accent-color);
+  --color-accent-hover: var(--accent-hover-color);
+  --color-accent-dim: var(--accent-dim-color);
+  --color-text: var(--text-color);
+  --color-text-on-accent: var(--text-on-accent);
+  --color-muted: var(--muted-color);
+  --color-border: var(--border-color);
+  --font-display: "Syne", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
 }
 
 /* Base */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -23,18 +123,28 @@ html {
 }
 
 body {
-  background-color: #0a0a0a;
-  color: #f0f0f0;
-  font-family: 'DM Sans', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: "DM Sans", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
   overflow-x: hidden;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+:root[data-theme="light"] body {
+  background:
+    radial-gradient(circle, transparent 40%, rgba(18, 18, 17, 0.04) 100%),
+    var(--bg-color);
 }
 
 /* Noise texture overlay */
 body::before {
-  content: '';
+  content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
@@ -50,23 +160,102 @@ body::before {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: var(--bg-color);
 }
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: var(--border-color);
   border-radius: 3px;
+  transition: background 0.3s ease;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #e8ff47;
+  background: var(--accent-color);
 }
 
 /* Selection */
 ::selection {
-  background: rgba(232, 255, 71, 0.25);
-  color: #e8ff47;
+  background: var(--selection-bg);
+  color: var(--selection-text);
 }
 
 /* Display font utility */
 .font-display {
-  font-family: 'Syne', sans-serif;
+  font-family: "Syne", system-ui, sans-serif;
+}
+
+/* Full-page R3F canvas */
+.scene-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.scene-canvas canvas {
+  display: block;
+  pointer-events: auto;
+}
+
+/* Scroll-driven section spacers (drive camera, hold no visible content) */
+.scene-section {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: 100vh;
+  pointer-events: none;
+}
+
+/* Experience floating card content (rendered via Drei <Html transform>). */
+.exp-card {
+  width: 320px;
+  padding: 14px 18px;
+  color: var(--text-color);
+  font-family: "DM Sans", system-ui, sans-serif;
+  text-align: left;
+  transition: color 0.3s ease;
+}
+
+.exp-period {
+  margin: 0 0 6px;
+  font-family: "Syne", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  opacity: 0.95;
+  transition: color 0.3s ease;
+}
+
+.exp-role {
+  margin: 0 0 2px;
+  font-family: "Syne", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+.exp-company {
+  margin: 0 0 10px;
+  font-size: 12px;
+  color: var(--muted-color);
+  transition: color 0.3s ease;
+}
+
+.exp-highlights {
+  margin: 0;
+  padding-left: 14px;
+  list-style: disc;
+  color: var(--muted-color);
+  font-size: 11px;
+  line-height: 1.45;
+  transition: color 0.3s ease;
+}
+
+.exp-highlights li {
+  margin-bottom: 3px;
 }
