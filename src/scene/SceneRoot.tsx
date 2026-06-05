@@ -56,7 +56,7 @@ function ScrollListener({ children }: { children: ReactNode }) {
 
 function SceneCanvas() {
   const theme = useTheme();
-  const bgColor = theme === "light" ? "#f8f9fa" : "#0a0a0a";
+  const bgColor = "#0a0a0a";
 
   // Bump the key on context-loss to force a fresh Canvas mount. The browser
   // hands us a dead WebGL context after loss; trying to keep using it will
@@ -83,21 +83,19 @@ function SceneCanvas() {
         gl={{
           antialias: true,
           alpha: true,
-          // "high-performance" forces dGPU on hybrid laptops; on systems
-          // where the dGPU is unavailable the browser falls back to
-          // integrated, which is exactly what we want here.
           powerPreference: "high-performance",
-          // Don't ask for a stencil/depth buffer we never use — small wins
-          // but they add up against the bloom render-target budget.
           stencil: false,
         }}
         camera={{ position: [0, 0, 6], fov: 45, near: 0.1, far: 200 }}
         onCreated={handleCreated}
       >
-        <color attach="background" args={[bgColor]} />
-        <fog attach="fog" args={[bgColor, 10, 40]} />
-        <ambientLight intensity={theme === "light" ? 0.75 : 0.4} />
-        <directionalLight position={[5, 5, 5]} intensity={theme === "light" ? 0.8 : 0.6} />
+        {theme === "dark" && <color attach="background" args={[bgColor]} />}
+        <fog attach="fog" args={[bgColor, 12, 42]} />
+        <ambientLight intensity={theme === "light" ? 0.85 : 0.4} />
+        <directionalLight
+          position={[5, 5, 5]}
+          intensity={theme === "light" ? 0.7 : 0.6}
+        />
 
         <CameraRig />
         <Hero />

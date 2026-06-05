@@ -61,7 +61,7 @@ function ParticleField() {
         size={0.022}
         sizeAttenuation
         depthWrite={false}
-        opacity={0.7}
+        opacity={theme === "light" ? 0.35 : 0.7}
       />
     </Points>
   );
@@ -85,14 +85,14 @@ function FloatingName() {
     <group ref={group} position={[0, NAME_BASE_Y, 0]}>
       <Text
         font={FONT_URLS.syneBold}
-        fontSize={0.95}
+        fontSize={0.8}
         anchorX="center"
         anchorY="middle"
         letterSpacing={-0.02}
-        maxWidth={10}
+        maxWidth={7}
         textAlign="center"
         color={pal.text}
-        outlineWidth={0.004}
+        outlineWidth={theme === "light" ? 0.0025 : 0.004}
         outlineColor={pal.bg}
       >
         Barin Debnath

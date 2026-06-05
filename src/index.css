@@ -71,20 +71,28 @@
   --text-on-accent: #0a0a0a;
   --muted-color: #888888;
   --border-color: #222222;
+  --selection-bg: rgba(232, 255, 71, 0.25);
+  --selection-text: #e8ff47;
   color-scheme: dark;
 }
 
 :root[data-theme="light"] {
-  --bg-color: #fcfcfc;
+  --bg-color: #faf9f6;
   --surface-color: #ffffff;
-  --surface-2-color: #f3f4f6;
-  --accent-color: #89b800;
-  --accent-hover-color: #7aa300;
-  --accent-dim-color: rgba(137, 184, 0, 0.1);
-  --text-color: #0a0a0a;
+  --surface-2-color: #f2f0e9;
+
+  --accent-color: #719400;
+  --accent-hover-color: #a8d604;
+  --accent-dim-color: rgba(190, 243, 5, 0.12);
+
+  --text-color: #121211;
   --text-on-accent: #ffffff;
-  --muted-color: #525252;
-  --border-color: #e5e7eb;
+  --muted-color: #6b6b63;
+
+  --border-color: #e5e2da;
+  --selection-bg: rgba(190, 243, 5, 0.3);
+  --selection-text: #121211;
+
   color-scheme: light;
 }
 
@@ -124,7 +132,14 @@ body {
   overflow-x: hidden;
   transition:
     background-color 0.3s ease,
-    color 0.3s ease;
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+:root[data-theme="light"] body {
+  background:
+    radial-gradient(circle, transparent 40%, rgba(18, 18, 17, 0.04) 100%),
+    var(--bg-color);
 }
 
 /* Noise texture overlay */
@@ -150,6 +165,7 @@ body::before {
 ::-webkit-scrollbar-thumb {
   background: var(--border-color);
   border-radius: 3px;
+  transition: background 0.3s ease;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-color);
@@ -157,8 +173,8 @@ body::before {
 
 /* Selection */
 ::selection {
-  background: rgba(232, 255, 71, 0.25);
-  color: #e8ff47;
+  background: var(--selection-bg);
+  color: var(--selection-text);
 }
 
 /* Display font utility */
@@ -190,27 +206,28 @@ body::before {
   pointer-events: none;
 }
 
-/* Experience floating card content (rendered via Drei <Html transform>).
-   Sized in real pixels then projected into 3D via distanceFactor on the
-   <Html> element — keep these dimensions in sync with CARD_W * 100 / df
-   in src/sections/Experience.tsx. */
+/* Experience floating card content (rendered via Drei <Html transform>). */
 .exp-card {
   width: 320px;
   padding: 14px 18px;
   color: var(--text-color);
   font-family: "DM Sans", system-ui, sans-serif;
   text-align: left;
+  transition: color 0.3s ease;
 }
+
 .exp-period {
   margin: 0 0 6px;
   font-family: "Syne", system-ui, sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 10px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--accent-color);
-  opacity: 0.9;
+  opacity: 0.95;
+  transition: color 0.3s ease;
 }
+
 .exp-role {
   margin: 0 0 2px;
   font-family: "Syne", system-ui, sans-serif;
@@ -219,12 +236,16 @@ body::before {
   line-height: 1.15;
   letter-spacing: -0.01em;
   color: var(--text-color);
+  transition: color 0.3s ease;
 }
+
 .exp-company {
   margin: 0 0 10px;
   font-size: 12px;
   color: var(--muted-color);
+  transition: color 0.3s ease;
 }
+
 .exp-highlights {
   margin: 0;
   padding-left: 14px;
@@ -232,7 +253,9 @@ body::before {
   color: var(--muted-color);
   font-size: 11px;
   line-height: 1.45;
+  transition: color 0.3s ease;
 }
+
 .exp-highlights li {
   margin-bottom: 3px;
 }

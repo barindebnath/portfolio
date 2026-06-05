@@ -7,8 +7,11 @@
 // before bloom samples it.
 
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
+import { useTheme } from "../theme";
 
 export function Effects() {
+  const theme = useTheme();
+
   return (
     <EffectComposer multisampling={0}>
       <Bloom
@@ -17,7 +20,7 @@ export function Effects() {
         luminanceSmoothing={0.25}
         mipmapBlur
       />
-      <Vignette eskil={false} offset={0.15} darkness={0.7} />
+      <Vignette eskil={false} offset={0.15} darkness={theme === "dark" ? 0.7 : 0} />
     </EffectComposer>
   );
 }
