@@ -30,13 +30,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     category: "Architecture & Perf",
-    skills: [
-      "React 18",
-      "Vite",
-      "Code Splitting",
-      "Design Systems",
-      "Monorepos",
-    ],
+    skills: ["Vite", "Code Splitting", "Design Systems", "Monorepos"],
   },
   {
     category: "Backend & Data",
@@ -44,7 +38,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     category: "AI & Cloud",
-    skills: ["AWS Bedrock", "Generative AI"],
+    skills: ["AWS", "Generative AI"],
   },
   {
     category: "Observability",
@@ -65,14 +59,7 @@ export const projects: Project[] = [
     title: "NorthGrid",
     description:
       "Scandinavian sustainability intelligence platform combining real-time Danish energy data, carbon-aware commute tracking, ESG reporting, and smart energy optimization for enterprise-grade performance and UX.",
-    tags: [
-      "Next.js",
-      "TypeScript",
-      "PostgreSQL",
-      "Playwright",
-      "SaaS",
-      "ESG",
-    ],
+    tags: ["Next.js", "TypeScript", "PostgreSQL", "Playwright", "SaaS", "ESG"],
     live: "https://north-grid-nine.vercel.app",
     github: "https://github.com/barindebnath/NorthGrid",
   },
@@ -104,8 +91,15 @@ export const projects: Project[] = [
   {
     title: "Portfolio",
     description:
-      "Personal portfolio site built with React, TypeScript, Vite, Tailwind CSS, and Framer Motion. Deployed to GitHub Pages.",
-    tags: ["React", "TypeScript", "Vite", "Tailwind", "Framer Motion"],
+      "A cinematic digital CV and project showcase. Blends interactive 3D graphics with fluid motion design to create a memorable browsing experience.",
+    tags: [
+      "React",
+      "Three.js",
+      "TypeScript",
+      "Vite",
+      "Tailwind",
+      "Framer Motion",
+    ],
     live: "https://barindebnath.github.io/portfolio",
     github: "https://github.com/barindebnath/portfolio",
   },
