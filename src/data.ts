@@ -56,14 +56,6 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: "NorthGrid",
-    description:
-      "Scandinavian sustainability intelligence platform combining real-time Danish energy data, carbon-aware commute tracking, ESG reporting, and smart energy optimization for enterprise-grade performance and UX.",
-    tags: ["Next.js", "TypeScript", "PostgreSQL", "Playwright", "SaaS", "ESG"],
-    live: "https://north-grid-nine.vercel.app",
-    github: "https://github.com/barindebnath/NorthGrid",
-  },
-  {
     title: "NordicFlow",
     description:
       "Engineering intelligence platform for modern frontend teams with PR analytics, deployment insights, DX metrics, and repository health dashboards.",
@@ -89,19 +81,12 @@ export const projects: Project[] = [
     github: "https://github.com/barindebnath/saas_foundation",
   },
   {
-    title: "Portfolio",
+    title: "NorthGrid",
     description:
-      "A cinematic digital CV and project showcase. Blends interactive 3D graphics with fluid motion design to create a memorable browsing experience.",
-    tags: [
-      "React",
-      "Three.js",
-      "TypeScript",
-      "Vite",
-      "Tailwind",
-      "Framer Motion",
-    ],
-    live: "https://barindebnath.github.io/portfolio",
-    github: "https://github.com/barindebnath/portfolio",
+      "Scandinavian sustainability intelligence platform combining real-time Danish energy data, carbon-aware commute tracking, ESG reporting, and smart energy optimization for enterprise-grade performance and UX.",
+    tags: ["Next.js", "TypeScript", "PostgreSQL", "Playwright", "SaaS", "ESG"],
+    live: "https://north-grid-nine.vercel.app",
+    github: "https://github.com/barindebnath/NorthGrid",
   },
   {
     title: "Storybook TS",
@@ -123,6 +108,21 @@ export const projects: Project[] = [
       "Deep-dive into advanced React patterns — custom hooks, compound components, render props, and performance optimization techniques.",
     tags: ["React", "TypeScript", "Hooks"],
     github: "https://github.com/barindebnath/advanced-react-hooks",
+  },
+  {
+    title: "Portfolio",
+    description:
+      "A cinematic digital CV and project showcase. Blends interactive 3D graphics with fluid motion design to create a memorable browsing experience.",
+    tags: [
+      "React",
+      "Three.js",
+      "TypeScript",
+      "Vite",
+      "Tailwind",
+      "Framer Motion",
+    ],
+    live: "https://barindebnath.github.io/portfolio",
+    github: "https://github.com/barindebnath/portfolio",
   },
 ];
 
