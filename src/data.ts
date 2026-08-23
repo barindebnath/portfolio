@@ -85,13 +85,6 @@ export const projects: Project[] = [
     github: "https://github.com/barindebnath/torch_room",
   },
   {
-    title: "Storybook TS",
-    description:
-      "Component library with Storybook — a showcase of reusable, well-documented UI components built with React and TypeScript.",
-    tags: ["React", "TypeScript", "Storybook"],
-    github: "https://github.com/barindebnath/storybook-ts",
-  },
-  {
     title: "jVocab",
     description:
       "Japanese vocabulary learning app with interactive flashcards, progress tracking, and quiz modes designed for effective retention.",
