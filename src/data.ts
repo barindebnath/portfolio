@@ -56,37 +56,33 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: "NordicFlow",
+    title: "Waypoint",
     description:
-      "Engineering intelligence platform for modern frontend teams with PR analytics, deployment insights, DX metrics, and repository health dashboards.",
-    tags: ["Next.js", "React", "TypeScript", "PostgreSQL", "Analytics"],
-    live: "https://nordicflow.vercel.app/dashboard",
-    github: "https://github.com/barindebnath/nordicflow",
-  },
-  {
-    title: "SaaS Foundation",
-    description:
-      "Production-grade multi-tenant SaaS starter built on a Turborepo monorepo. Implements logical data isolation via organization_id scoping, webhook-synced RBAC (owner/admin/member), and per-org Stripe billing. Stack: Next.js 15, Drizzle ORM, Neon serverless Postgres, Clerk, Stripe. Deployed to Vercel.",
+      "Personal status tracker and external memory for developers. Tracks Jira cards from development to production through a milestone pipeline with sub-task checklists, Tempo timesheet attestation, and agent API support.",
     tags: [
       "Next.js",
       "TypeScript",
-      "Turborepo",
-      "Drizzle ORM",
       "PostgreSQL",
-      "Clerk",
-      "Stripe",
+      "Drizzle ORM",
+      "Better Auth",
       "Tailwind",
     ],
-    live: "https://saas-foundation-web-liard.vercel.app",
-    github: "https://github.com/barindebnath/saas_foundation",
+    live: "https://waypoint-bd.vercel.app",
+    github: "https://github.com/barindebnath/waypoint",
   },
   {
-    title: "NorthGrid",
+    title: "Torch Room",
     description:
-      "Scandinavian sustainability intelligence platform combining real-time Danish energy data, carbon-aware commute tracking, ESG reporting, and smart energy optimization for enterprise-grade performance and UX.",
-    tags: ["Next.js", "TypeScript", "PostgreSQL", "Playwright", "SaaS", "ESG"],
-    live: "https://north-grid-nine.vercel.app",
-    github: "https://github.com/barindebnath/NorthGrid",
+      "Interactive 3D isometric dark room simulation built with Elixir and Phoenix LiveView, featuring dynamic radial lighting, surface reflections, and a real-time cursor-tracking flashlight.",
+    tags: [
+      "Elixir",
+      "Phoenix LiveView",
+      "Tailwind",
+      "Bandit",
+      "WebSockets",
+    ],
+    live: "https://torch-room.fly.dev",
+    github: "https://github.com/barindebnath/torch_room",
   },
   {
     title: "Storybook TS",
