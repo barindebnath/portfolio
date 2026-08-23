@@ -99,13 +99,6 @@ export const projects: Project[] = [
     github: "https://github.com/barindebnath/jVocab",
   },
   {
-    title: "Advanced React Hooks",
-    description:
-      "Deep-dive into advanced React patterns — custom hooks, compound components, render props, and performance optimization techniques.",
-    tags: ["React", "TypeScript", "Hooks"],
-    github: "https://github.com/barindebnath/advanced-react-hooks",
-  },
-  {
     title: "Portfolio",
     description:
       "A cinematic digital CV and project showcase. Blends interactive 3D graphics with fluid motion design to create a memorable browsing experience.",
